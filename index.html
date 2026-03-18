@@ -1,254 +1,147 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adesivo em Vinil | Gráfica Cajamar</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        /* CONFIGURAÇÕES GERAIS */
-        :root {
-            --amarelo: #FFD700; /* Cor da sua Gráfica */
-            --preto: #1a1a1a;
-            --branco: #ffffff;
-            --cinza-claro: #f4f4f4;
-            --verde-whatsapp: #25D366;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gráfica Cajamar</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--branco); color: var(--preto); line-height: 1.6; }
+<style>
+body { font-family: Arial; margin:0; background:#f4f4f4; }
 
-        /* CABEÇALHO */
-        header {
-            background: var(--preto);
-            color: var(--amarelo);
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+header {
+    background:#000;
+    color:#FFD700;
+    padding:15px;
+    text-align:center;
+}
 
-        .logo { font-weight: 900; font-size: 1.5rem; text-transform: uppercase; letter-spacing: -1px; }
-        .logo span { color: var(--branco); }
+.container { max-width:1100px; margin:auto; padding:20px; }
 
-        .btn-whats-top {
-            background: var(--verde-whatsapp);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
 
-        /* CONTEÚDO DO PRODUTO */
-        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.card {
+    background:#fff;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
 
-        .product-image img {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            background: var(--cinza-claro);
-        }
+.card img { width:100%; border-radius:8px; }
 
-        .product-info h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; }
-        .badge { background: var(--amarelo); padding: 4px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
+.btn {
+    background:#25D366;
+    color:#fff;
+    padding:10px;
+    text-align:center;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:10px;
+}
 
-        .description { color: #666; margin: 20px 0; }
+.produto-detalhe { display:none; background:#fff; padding:20px; border-radius:10px; }
 
-        /* CALCULADORA */
-        .config-box { background: var(--cinza-claro); padding: 25px; border-radius: 12px; margin-top: 20px; }
-        .field { margin-bottom: 20px; }
-        label { display: block; font-weight: bold; margin-bottom: 8px; font-size: 0.9rem; }
-        
-        select, input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-        }
+select, input { width:100%; padding:10px; margin:10px 0; }
 
-        .price-display {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--preto);
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+.preco { font-size:22px; font-weight:bold; color:green; }
 
-        .price-display span { font-size: 1rem; color: #666; font-weight: normal; }
-
-        .btn-buy {
-            background: var(--verde-whatsapp);
-            color: white;
-            display: block;
-            text-align: center;
-            padding: 18px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-            transition: transform 0.2s;
-        }
-        .btn-buy:hover { transform: scale(1.02); background: #1eb954; }
-
-        /* VANTAGENS */
-        .advantages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; text-align: center; }
-        .adv-card { padding: 20px; border: 1px solid #eee; border-radius: 10px; }
-        .adv-card h3 { color: var(--amarelo); margin-bottom: 5px; background: var(--preto); display: inline-block; padding: 2px 10px; border-radius: 4px;}
-
-        /* RODAPÉ */
-        footer { background: var(--preto); color: #888; padding: 60px 5% 20px; margin-top: 80px; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-        .footer-grid h4 { color: var(--branco); margin-bottom: 15px; }
-        .bottom-bar { border-top: 1px solid #333; padding-top: 20px; text-align: center; font-size: 0.8rem; }
-
-        /* WHATSAPP FLUTUANTE */
-        .whats-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--verde-whatsapp);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 1000;
-            transition: 0.3s;
-        }
-
-        /* RESPONSIVO */
-        @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .product-info h1 { font-size: 1.8rem; }
-        }
-    </style>
+footer {
+    background:#000;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+    margin-top:20px;
+}
+</style>
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">GRÁFICA <span>CAJAMAR</span></div>
-        <a href="https://wa.me/5511995759555" class="btn-whats-top" target="_blank">Falar com Consultor</a>
-    </header>
+<header>
+    <h1>GRÁFICA CAJAMAR</h1>
+</header>
 
-    <div class="container">
-        <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1572375992501-4b0892d50c69?q=80&w=1000&auto=format&fit=crop" alt="Adesivo Vinil">
-            
-            <div class="advantages">
-                <div class="adv-card">
-                    <h3>✓</h3>
-                    <p><b>Alta Durabilidade</b></p>
-                </div>
-                <div class="adv-card">
-                    <h3>✓</h3>
-                    <p><b>Corte Especial</b></p>
-                </div>
-                <div class="adv-card">
-                    <h3>✓</h3>
-                    <p><b>À prova d'água</b></p>
-                </div>
-            </div>
+<div class="container">
+
+    <h2>Produtos</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200">
+            <h3>Adesivo em Vinil</h3>
+            <div class="btn" onclick="abrirProduto('adesivo')">Ver opções</div>
         </div>
 
-        <div class="product-info">
-            <span class="badge">O MAIS VENDIDO</span>
-            <h1>Adesivo em Vinil</h1>
-            <p class="description">Ideal para rótulos, sinalização e brindes. Material resistente ao sol e chuva com impressão em alta definição.</p>
-
-            <div class="config-box">
-                <div class="field">
-                    <label>Escolha o Tamanho:</label>
-                    <select id="tamanho" onchange="calcular()">
-                        <option value="5.00">5x5 cm (Pequeno)</option>
-                        <option value="12.00">10x10 cm (Médio)</option>
-                        <option value="25.00">20x20 cm (Grande)</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label>Quantidade:</label>
-                    <input type="number" id="quantidade" value="10" min="1" oninput="calcular()">
-                </div>
-
-                <div class="price-display">
-                    <span id="label-total">Total:</span> 
-                    R$ <span id="preco-final">50,00</span>
-                </div>
-
-                <a href="#" id="link-whats" class="btn-buy" target="_blank">
-                    COMPRAR PELO WHATSAPP
-                </a>
-            </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200">
+            <h3>Cartão de Visita</h3>
+            <div class="btn" onclick="abrirProduto('cartao')">Ver opções</div>
         </div>
+
     </div>
 
-    <footer>
-        <div class="footer-grid">
-            <div>
-                <h4>GRÁFICA CAJAMAR</h4>
-                <p>Qualidade e rapidez em serviços gráficos para toda a região.</p>
-            </div>
-            <div>
-                <h4>ENDEREÇO</h4>
-                <p>Rua dos Alecrins, 656<br>Portal dos Ipês - Cajamar/SP<br>CEP: 07791-000</p>
-            </div>
-            <div>
-                <h4>CONTATO</h4>
-                <p>(11) 99575-9555<br>(11) 99557-6538</p>
-            </div>
-        </div>
-        <div class="bottom-bar">
-            CNPJ: 18.068.222/0001-01 | &copy; 2026 Gráfica Cajamar. Todos os direitos reservados.
-        </div>
-    </footer>
+    <!-- PRODUTO ADESIVO -->
+    <div id="adesivo" class="produto-detalhe">
+        <h2>Adesivo em Vinil</h2>
 
-    <a href="https://wa.me/5511995759555" class="whats-float" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
-    </a>
+        <label>Tamanho:</label>
+        <select id="tamA" onchange="calcAdesivo()">
+            <option value="5">Pequeno</option>
+            <option value="10">Médio</option>
+            <option value="20">Grande</option>
+        </select>
 
-    <script>
-        function calcular() {
-            // Pegando os valores
-            const precoUnitario = parseFloat(document.getElementById('tamanho').value);
-            const qtd = parseInt(document.getElementById('quantidade').value);
-            const selectTamanho = document.getElementById('tamanho');
-            const textoTamanho = selectTamanho.options[selectTamanho.selectedIndex].text;
+        <label>Material:</label>
+        <select id="matA" onchange="calcAdesivo()">
+            <option value="1">Vinil Fosco</option>
+            <option value="1.2">Vinil Brilho</option>
+            <option value="1.5">Transparente</option>
+        </select>
 
-            // Calculando
-            const total = (precoUnitario * qtd).toFixed(2);
-            
-            // Atualizando o preço na tela
-            document.getElementById('preco-final').innerText = total.replace('.', ',');
+        <label>Quantidade:</label>
+        <input type="number" id="qtdA" value="10" onchange="calcAdesivo()">
 
-            // Configurando o Link do WhatsApp
-            const numeroTel = "5511995759555"; // SEU TELEFONE AQUI
-            const mensagem = `Olá Gráfica Cajamar! Gostaria de encomendar:
-- *Produto:* Adesivo em Vinil
-- *Tamanho:* ${textoTamanho}
-- *Quantidade:* ${qtd} unidades
-- *Valor Total:* R$ ${total}`;
+        <div class="preco">R$ <span id="totalA">50</span></div>
 
-            const linkFinal = "https://wa.me/" + numeroTel + "?text=" + encodeURIComponent(mensagem);
-            document.getElementById('link-whats').href = linkFinal;
-        }
+        <div class="btn" onclick="comprarAdesivo()">Pedir no WhatsApp</div>
+    </div>
 
-        // Inicia o cálculo ao abrir a página
-        window.onload = calcular;
-    </script>
+</div>
+
+<footer>
+    <p>Gráfica Cajamar</p>
+    <p>Rua dos Alecrins, 656</p>
+    <p>WhatsApp: (11) 99575-9555</p>
+</footer>
+
+<script>
+function abrirProduto(id) {
+    document.querySelectorAll('.produto-detalhe').forEach(e => e.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+}
+
+function calcAdesivo() {
+    let tam = document.getElementById("tamA").value;
+    let mat = document.getElementById("matA").value;
+    let qtd = document.getElementById("qtdA").value;
+
+    let total = tam * mat * qtd;
+
+    document.getElementById("totalA").innerText = total.toFixed(2);
+}
+
+function comprarAdesivo() {
+    let total = document.getElementById("totalA").innerText;
+
+    let msg = `Olá! Quero comprar Adesivo\nTotal: R$ ${total}`;
+
+    window.open(`https://wa.me/5511995759555?text=${encodeURIComponent(msg)}`);
+}
+</script>
 
 </body>
 </html>
